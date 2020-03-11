@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -21,7 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -37,7 +37,10 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+directions = ('n', 's', 'e', 'w')
+
 # Make a new player object that is currently in the 'outside' room.
+adventurer = Player("Link", room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,14 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    print(f"You are here: {adventurer.current_room.name}")
+    print(adventurer.current_room.description)
+    cmd = input("---> ")
+    if cmd == "q":
+        print("Quitting the game. See you later!")
+        break
+    elif cmd == "n":
+        adventurer.current_room ==
+    else:
+        print("Sorry, I don't know that command.\n ----------")
