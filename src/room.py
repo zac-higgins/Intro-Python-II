@@ -2,7 +2,6 @@
 # description attributes.
 
 
-# Brady didn't include the directions eg(n_to) in the __init__()   Why??
 class Room:
     def __init__(self, name, description):
         self.name = name
@@ -11,6 +10,7 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.items = []
 
     def __str__(self):
         return_string = "---------"
@@ -19,7 +19,12 @@ class Room:
         return_string += "\n\n"
         return_string += self.description
         return_string += "\n\n"
-        return_string += f"{self.get_exits_string()}"
+        if len(self.items) > 0:
+            return_string += f"There are some items in this room!\n{self.items}\n\n"
+        else:
+            return_string += "There are no items in this room"
+        return_string += "\n\n"
+        return_string += f"Exits ->{self.get_exits_string()}"
         return return_string
 
     def get_exits_string(self):
@@ -33,3 +38,23 @@ class Room:
         if self.w_to:
             exits.append("w")
         return exits
+
+    def take_item(self, item):
+        try:
+            item_index = self.items.index(item)
+            self.items.pop(item_index)
+            return True
+        except:
+            return False
+
+    def add_to_items(self, item):
+        self.items.append(item)
+
+    # def remove_from_inventory(self, item):
+    #     # search if the item is in the inventory and if so, at what index
+    #     try:
+    #         self.items.index(item)
+    #     except:
+    #         print(f"There isn't a {item} in this room")
+    #         return None
+    #     # if the item is in the inventory, remove it

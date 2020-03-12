@@ -34,6 +34,11 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 #
+
+# add items to rooms
+room['outside'].items = ['torch']
+room['treasure'].items = ['note']
+
 # Main
 #
 
@@ -53,13 +58,18 @@ adventurer = Player("Link", room['outside'])
 #
 # If the user enters "q", quit the game.
 while True:
-    print(f"You are here: {adventurer.current_room.name}")
-    print(adventurer.current_room.description)
+    # print(f"You are here: {adventurer.current_room.name}")
+    # print(adventurer.current_room.description)
+    print(f"Inventory: {adventurer.inventory}")
     cmd = input("---> ")
     if cmd == "q":
         print("Quitting the game. See you later!")
         break
     elif cmd in directions:
         adventurer.travel(cmd)
+    elif cmd.split()[0] == "take" and len(cmd.split()) < 3:
+        adventurer.add_to_inventory(cmd.split()[1])
+    elif cmd.split()[0] == "drop" and len(cmd.split()) < 3:
+        adventurer.remove_from_inventory(cmd.split()[1])
     else:
-        print("Sorry, I don't know that command.\n ----------")
+        print("\n\nSorry, I don't know that command.\n ----------")
