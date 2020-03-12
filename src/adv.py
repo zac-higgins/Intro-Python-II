@@ -59,7 +59,7 @@ while True:
     if cmd == "q":
         print("Quitting the game. See you later!")
         break
-    elif cmd == "n":
-        adventurer.current_room ==
+    elif cmd in directions:
+        adventurer.travel(cmd)
     else:
         print("Sorry, I don't know that command.\n ----------")
