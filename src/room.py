@@ -24,7 +24,7 @@ class Room:
         else:
             return_string += "There are no items in this room"
         return_string += "\n\n"
-        return_string += f"Exits ->{self.get_exits_string()}"
+        return_string += f"Directions you can travel: {self.get_exits_string()}"
         return return_string
 
     def get_exits_string(self):

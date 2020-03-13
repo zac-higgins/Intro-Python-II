@@ -19,12 +19,9 @@ class Player:
     def add_to_inventory(self, item):
         if self.current_room.take_item(item) is True:
             self.inventory.append(item)
-            print(
-                f"\n\n{item} added to inventory!\nInventory ->{self.inventory}\n")
             print(self.current_room)
         else:
             print(f"There is no {item} in this room")
-        print(f"Inventory ->{self.inventory}")
 
     def remove_from_inventory(self, item):
         # search if the item is in the inventory and if so, at what index
